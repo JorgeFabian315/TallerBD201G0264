@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\.png" />
+    <None Remove="Assets\1.jpg" />
+    <None Remove="Assets\2.jpg" />
+    <None Remove="Assets\3.jpg" />
+    <None Remove="Assets\Alkalami-Regular.ttf" />
+    <None Remove="Assets\cerrar.png" />
+    <None Remove="Assets\cerrarnegro.png" />
+    <None Remove="Assets\minimizar.png" />
+    <None Remove="Assets\minimizarnegro.png" />
+    <None Remove="Assets\Poppins-ExtraLight.ttf" />
+    <None Remove="Assets\regresar.png" />
+    <None Remove="Assets\Roboto-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+    <PackageReference Include="MySql.Data" Version="8.0.30" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\1.jpg" />
+    <Resource Include="Assets\2.jpg" />
+    <Resource Include="Assets\3.jpg" />
+    <Resource Include="Assets\Alkalami-Regular.ttf" />
+    <Resource Include="Assets\cerrar.png" />
+    <Resource Include="Assets\cerrarnegro.png" />
+    <Resource Include="Assets\minimizar.png" />
+    <Resource Include="Assets\.png" />
+    <Resource Include="Assets\minimizarnegro.png" />
+    <Resource Include="Assets\Poppins-ExtraLight.ttf" />
+    <Resource Include="Assets\regresar.png" />
+    <Resource Include="Assets\Roboto-Regular.ttf" />
+  </ItemGroup>
+
+</Project>

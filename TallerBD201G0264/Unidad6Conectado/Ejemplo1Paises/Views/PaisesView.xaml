@@ -1,0 +1,204 @@
+﻿<Window x:Class="TallerBD201G0264.Unidad6Conectado.Ejemplo1Paises.Views.PaisesView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TallerBD201G0264.Unidad6Conectado.Ejemplo1Paises.Views"
+        xmlns:ViewModels="clr-namespace:TallerBD201G0264.Unidad6Conectado.Ejemplo1Paises.ViewModels"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Title="PaisesView"
+        Height="650"
+        Width="1200">
+
+
+  
+    
+    <Border CornerRadius="20">
+
+        <Border.DataContext>
+            <ViewModels:PaisesViewModel></ViewModels:PaisesViewModel>
+        </Border.DataContext>
+        
+        <Border.Background>
+            <ImageBrush ImageSource="/Assets/1.jpg" />
+        </Border.Background>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".6*" />
+                <ColumnDefinition Width=".4*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".3*"/>
+                    <RowDefinition Height=".7*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Mundo" Foreground="White" FontWeight="SemiBold"
+                           FontSize="80" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="15"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+                <ListBox Grid.Row="1" Margin="20" BorderThickness="5"
+                         BorderBrush="White"
+                         Foreground="White"
+                         FontSize="17"
+                         Name="lstPaises"
+                         ItemsSource="{Binding Paises.Paises}"
+                         SelectedIndex="0"
+                         Background="Transparent">
+                    <ListBox.Resources>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Cursor" Value="Hand" />
+                        </Style>
+                    </ListBox.Resources>
+                </ListBox>
+            </Grid>
+            <Border Background="Black"
+                    Grid.Column="1"
+                    CornerRadius="0,20,20,0"
+                    Opacity=".6" />
+            <Grid Grid.Column="1"
+                  Background="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".1*" />
+                    <RowDefinition Height=".1*" />
+                    <RowDefinition Height=".8*" />
+                </Grid.RowDefinitions>
+                
+                <WrapPanel HorizontalAlignment="Right"
+                           Margin="0,10,10,0">
+                    <WrapPanel.Resources>
+                        <Style TargetType="Button">
+                            <Setter Property="Background"
+                                    Value="Transparent" />
+                            <Setter Property="Cursor"
+                                    Value="Hand" />
+                            <Setter Property="Width"
+                                    Value="30" />
+                            <Setter Property="BorderThickness"
+                                    Value="0" />
+                            <Setter Property="Height"
+                                    Value="15" />
+                            <Setter Property="Padding"
+                                    Value="3" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter VerticalAlignment="Center"
+                                                              HorizontalAlignment="Center" />
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </WrapPanel.Resources>
+                    <Button Click="btnMinimizar_Click">
+                        <Image Source="/Assets/minimizar.png" />
+                    </Button>
+                    <Button Click="btnCerrar_Click">
+                        <Image Source="/Assets/cerrar.png" />
+                    </Button>
+                </WrapPanel>
+                <TextBlock Text="Información del país"
+                           Grid.Row="1" 
+                           Foreground="White"
+                           FontSize="30"
+                           HorizontalAlignment="Center"/>
+                <Grid Grid.Row="2" Grid.ColumnSpan="2"
+                      Margin="20,0,0,0">
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground"
+                                    Value="White" />
+                            <Setter Property="FontSize"
+                                    Value="20" />
+                            <Setter Property="FontWeight"
+                                    Value="SemiBold" />
+                            <Setter Property="TextWrapping"
+                                    Value="Wrap" />
+                            <Setter Property="Margin" Value="0,0,0,10" />
+                        </Style>
+                        <Style TargetType="TextBlock" x:Key="info">
+                            <Setter Property="Foreground"
+                                    Value="Yellow" />
+                            <Setter Property="FontSize"
+                                    Value="20" />
+                            <Setter Property="FontWeight"
+                                    Value="SemiBold" />
+                            <Setter Property="TextWrapping"
+                                    Value="Wrap" />
+                            <Setter Property="Margin" Value="40,0,0,10" />
+                        </Style>
+                    </Grid.Resources>
+                    <StackPanel Grid.Column="0">
+                        <WrapPanel>
+                            <TextBlock Text="Nombre:"/>
+                            <TextBlock 
+                                Style="{StaticResource info}"
+                                Text="{Binding ElementName=lstPaises, Path=SelectedItem.Name}" />
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Text="Continente:" />
+                            <TextBlock 
+                                Style="{StaticResource info}"
+                                Text="{Binding ElementName=lstPaises, Path=SelectedItem.Continent}" />
+                        </WrapPanel>
+                        <WrapPanel>
+                        <TextBlock Text="Región:" />
+                            <TextBlock Style="{StaticResource info}"
+                                Text="{Binding ElementName=lstPaises, Path=SelectedItem.Region}"  />
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Text="Superficie:" />
+                            <TextBlock Style="{StaticResource info}"
+                                Text="{Binding ElementName=lstPaises, Path=SelectedItem.SurfaceArea}" />
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Text="Año de independencia:" />
+                            <TextBlock Style="{StaticResource info}"
+                                Text="{Binding ElementName=lstPaises, Path=SelectedItem.IndepYear}" />
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Text="Población:" />
+                            <TextBlock 
+                                Style="{StaticResource info}"
+                                Text="{Binding ElementName=lstPaises, Path=SelectedItem.Population}"  />
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Text="Esperanza de vida:"  />
+                            <TextBlock 
+                                Style="{StaticResource info}"
+                                Text="{Binding ElementName=lstPaises, Path=SelectedItem.LifeExpectancy}" />
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Text="Nombre local:" />
+                            <TextBlock 
+                                Style="{StaticResource info}"
+                                Text="{Binding ElementName=lstPaises, Path=SelectedItem.LocalName}" />
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Text="Forma de gobierno:" />
+                            <TextBlock  Style="{StaticResource info}"
+                                Text="{Binding ElementName=lstPaises, Path=SelectedItem.GovernmentForm}"  />
+                        </WrapPanel>
+                        <WrapPanel>
+                            <TextBlock Text="Jefe de estado:" />
+                            <TextBlock 
+                                Style="{StaticResource info}"
+                                Text="{Binding ElementName=lstPaises, Path=SelectedItem.HeadOfState}"  />
+
+                        </WrapPanel>
+                    </StackPanel>
+                    <!--<StackPanel Grid.Column="1" Margin="10,5,0,0">
+                    </StackPanel>-->
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="TallerBD201G0264.Unidad6Conectado.Ejemplo2Ferretera.Views.EstadisticasView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TallerBD201G0264.Unidad6Conectado.Ejemplo2Ferretera.Views"
+             mc:Ignorable="d"
+             Height="700"
+             x:Name="EstadisticasView2"
+             Width="1200"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Border CornerRadius="10"
+                Background="Black"
+                Opacity=".3" />
+        <Grid Background="Transparent"
+              Width="800" 
+              VerticalAlignment="Center"
+              Height="400">
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".1*"/>
+                <RowDefinition Height=".1*"/>
+                <RowDefinition Height=".8*"/>
+            </Grid.RowDefinitions>
+            <Border CornerRadius="10,10,0,0"
+                    Background="#0069c0" />
+            
+            <WrapPanel HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Margin="0,0,10,0">
+                <WrapPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Background"
+                                Value="Transparent" />
+                        <Setter Property="Cursor"
+                                Value="Hand" />
+                        <Setter Property="Width"
+                                Value="30" />
+                        <Setter Property="BorderThickness"
+                                Value="0" />
+                        <Setter Property="Height"
+                                Value="15" />
+                        <Setter Property="Padding"
+                                Value="3" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                          HorizontalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </WrapPanel.Resources>
+                <Button Click="btnCerrar_Click"
+                        Name="btnCerrar">
+                    <Image Source="/Assets/cerrar.png" />
+                </Button>
+            </WrapPanel>
+            <Border CornerRadius="0,0,10,10"
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Background="GhostWhite"/>
+            <TextBlock Text="Estadísticas básicas" Grid.Row="1"
+                       FontFamily="/Assets/#Poppins ExtraLight" FontSize="25"
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <StackPanel Grid.Row="2"
+                        Margin="0,20,0,0"
+                        Background="Transparent">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontFamily"
+                                Value="/Assets/#Poppins ExtraLight" />
+                        <Setter Property="FontSize"
+                                Value="25" />
+                        <Setter Property="Margin"
+                                Value="10,0,10,0" />
+                    </Style>
+                </StackPanel.Resources>
+                <WrapPanel>
+                    <TextBlock Text="Promedio del precio:" />
+                    <TextBlock Text="{Binding PromedioPrecio,StringFormat=$0.00}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Precio más alto:"/>
+                    <TextBlock Text="{Binding PrecioMayor,StringFormat=$0.00}"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Producto más caro:" />
+                    <TextBlock Text="{Binding ProductoMasCaro}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Precio más Bajo:" />
+                    <TextBlock Text="{Binding PrecioMenor,StringFormat=$0.00}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Producto más barato:" />
+                    <TextBlock Text="{Binding ProductoMasBarato}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Marca con más productos:" />
+                    <TextBlock Text="{Binding MarcaMasVendida}" />
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Marca con menos productos:" />
+                    <TextBlock Text="{Binding MarcaMenosVendida}" />
+                </WrapPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
