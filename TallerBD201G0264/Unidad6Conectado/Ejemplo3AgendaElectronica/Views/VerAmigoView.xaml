@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Views.VerAmigoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock"
+                   x:Key="Titulos">
+                <Setter Property="Text"
+                        Value="Agenda Personal" />
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Center" />
+                <Setter Property="FontSize"
+                        Value="50" />
+                <Setter Property="FontFamily"
+                        Value="/Assets/#Dancing Script" />
+                <Setter Property="Margin"
+                        Value="0,15,0,0" />
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".15*" />
+            <RowDefinition Height=".25*" />
+            <RowDefinition Height=".6*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0"
+                   Text="Información del contacto"
+                   Style="{StaticResource Titulos}" />
+        <Ellipse Height="120"
+                 Grid.Row="1"
+                 Width="120">
+            <Ellipse.Fill>
+                <ImageBrush ImageSource="/Assets/amigologo.png" />
+            </Ellipse.Fill>
+        </Ellipse>
+        <StackPanel Grid.Row="2">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize"
+                            Value="20" />
+                    <Setter Property="Margin"
+                            Value="20,15,0,0" />
+                    <Setter Property="FontFamily"
+                            Value="/Assets/#Poppins ExtraLight.ttf" />
+                    <Setter Property="TextWrapping"
+                            Value="Wrap" />
+                </Style>
+            </StackPanel.Resources>
+            <WrapPanel>
+                <TextBlock Text="Nombre:" />
+                <TextBlock Text="{Binding ElementName=lstListaAmigos, Path=SelectedItem.Nombre}" />
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Telefono:" />
+                <TextBlock Text="{Binding ElementName=lstListaAmigos, Path=SelectedItem.Telefono}" />
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Fecha de nacimiento:" />
+                <TextBlock Text="{Binding ElementName=lstListaAmigos, Path=SelectedItem.FechaNacimiento, StringFormat=yyyy-MM-dd}" />
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Correo Electronico:" />
+                <TextBlock Text="{Binding ElementName=lstListaAmigos, Path=SelectedItem.CorreoElectronico}" />
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

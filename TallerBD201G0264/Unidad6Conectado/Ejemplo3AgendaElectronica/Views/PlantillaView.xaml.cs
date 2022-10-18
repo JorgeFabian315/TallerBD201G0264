@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,18 +11,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Views
 {
     /// <summary>
-    /// Lógica de interacción para AgendaView.xaml
+    /// Lógica de interacción para PlantillaView.xaml
     /// </summary>
-    public partial class AgendaView : Window
+    public partial class PlantillaView : UserControl
     {
-        public AgendaView()
+        public PlantillaView()
         {
             InitializeComponent();
+        }
+
+        private void btnEliminar_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Desea eliminar");
         }
     }
 }

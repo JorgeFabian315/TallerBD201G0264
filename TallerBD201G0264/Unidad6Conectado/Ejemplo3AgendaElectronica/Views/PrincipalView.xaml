@@ -4,66 +4,516 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Views"
+        xmlns:VM="clr-namespace:TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel"
         mc:Ignorable="d"
-        Title="PrincipalView" 
+        Title="PrincipalView"
+        WindowStartupLocation="CenterScreen"
         WindowStyle="None"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
         AllowsTransparency="True"
         Background="Transparent"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown"
-        WindowStartupLocation="CenterScreen"
-        Height="700" Width="1200">
+        Height="650"
+        Width="1200">
+    <Window.DataContext>
+        <VM:AgendaElectronicaVM x:Name="AEVM"/>
+    </Window.DataContext>
+    <Window.Resources></Window.Resources>
     <Grid Background="Transparent">
-        <Grid.RowDefinitions>
-            <RowDefinition Height=".1*"/>
-            <RowDefinition Height=".9*"/>
-        </Grid.RowDefinitions>
-        <Border CornerRadius="20" Background="GhostWhite"
-                Grid.RowSpan="2"/>
-        <WrapPanel HorizontalAlignment="Right"
-                   VerticalAlignment="Center"
-                   Margin="0,0,10,0">
-            <WrapPanel.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="Background"
-                            Value="Transparent" />
-                    <Setter Property="Cursor"
-                            Value="Hand" />
-                    <Setter Property="Width"
-                            Value="35" />
-                    <Setter Property="BorderThickness"
-                            Value="0" />
-                    <Setter Property="Height"
-                            Value="20" />
-                    <Setter Property="Padding"
-                            Value="0" />
-                    <Setter Property="Template">
+        <!--#REGION RECTANGULOS DE COLORES-->
+        <StackPanel HorizontalAlignment="Right"
+                    Margin="0,40,0,0">
+            <StackPanel.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="Margin"
+                            Value="0,10,0,10" />
+                    <Setter Property="BorderBrush">
                         <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Border Background="{TemplateBinding Background}">
-                                    <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center" />
-                                </Border>
-                            </ControlTemplate>
+                            <LinearGradientBrush>
+                                <GradientStop Color="{StaticResource Color1}"
+                                              Offset="0" />
+                                <GradientStop Color="{StaticResource Color2}"
+                                              Offset="0.5" />
+                                <GradientStop Color="{StaticResource Color3}"
+                                              Offset="1" />
+                            </LinearGradientBrush>
                         </Setter.Value>
                     </Setter>
+                    <Setter Property="BorderThickness"
+                            Value="3" />
+                    <Setter Property="CornerRadius"
+                            Value="10" />
                 </Style>
-            </WrapPanel.Resources>
-            <Button 
-                    Name="btnMinimizar">
-                <Image Source="/Assets/minimizarnegro.png" />
-            </Button>
-            <Button 
-                    Name="btnCerrar">
-                <Image Source="/Assets/cerrarnegro.png" />
-            </Button>
-        </WrapPanel>
-        <Border CornerRadius="0,100,0,20"
-                Width="250"
-                Grid.Row="1"
-                HorizontalAlignment="Left"
-                Background="#9a0007"/>
-        
-        
-        
+            </StackPanel.Resources>
+            <Border Background="#ffff00"
+                    Width="220"
+                    Height="120" />
+            <Border Background="#c2185b"
+                    Width="220"
+                    Height="120" />
+            <Border Background="#0043ca"
+                    Width="220"
+                    Height="120" />
+            <Border Background="#32cb00"
+                    Width="220"
+                    Height="120" />
+        </StackPanel>
+        <!--#ENDREGION RECTANGULOS-->
+        <Border CornerRadius="20"
+                BorderThickness="10"
+                Background="GhostWhite"
+                Margin="0,0,40,0">
+            <Border.BorderBrush>
+                <LinearGradientBrush>
+                    <GradientStop Color="{StaticResource Color1}"
+                                  Offset="0" />
+                    <GradientStop Color="{StaticResource Color2}"
+                                  Offset="0.65" />
+                    <GradientStop Color="{StaticResource Color3}"
+                                  Offset="1" />
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        </Border>
+        <Grid Margin="20,20,60,20">
+            <Grid.Resources>
+                <!--#REGION ESTILOS TITULOS-->
+                <Style TargetType="TextBlock"
+                       x:Key="Titulos">
+                    <Setter Property="Text"
+                            Value="Agenda Personal" />
+                    <Setter Property="VerticalAlignment"
+                            Value="Center" />
+                    <Setter Property="HorizontalAlignment"
+                            Value="Center" />
+                    <Setter Property="FontSize"
+                            Value="50" />
+                    <Setter Property="FontFamily"
+                            Value="/Assets/#Dancing Script" />
+                    <Setter Property="Margin"
+                            Value="0,15,0,0" />
+                </Style>
+                <!--#ENDREGION ESTILOS TITULOS-->
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition  Height=".05*" />
+                <RowDefinition Height=".95*" />
+            </Grid.RowDefinitions>
+            <!--#REGION BOTONES CERRAR Y MINIMIZAR-->
+            <WrapPanel HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Grid.Column="1"
+                       Margin="0,0,10,0">
+                <WrapPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Background"
+                                Value="Transparent" />
+                        <Setter Property="Cursor"
+                                Value="Hand" />
+                        <Setter Property="Width"
+                                Value="30" />
+                        <Setter Property="BorderThickness"
+                                Value="0" />
+                        <Setter Property="Height"
+                                Value="15" />
+                        <Setter Property="Padding"
+                                Value="3" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                          HorizontalAlignment="Center" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </WrapPanel.Resources>
+                <Button Click="btnMinimizar_Click"
+                        Name="btnMinimizar"
+                        Height="20">
+                    <Image Source="/Assets/minimizar.png" />
+                </Button>
+                <Button Click="btnCerrar_Click"
+                        Name="btnCerrar">
+                    <Image Source="/Assets/cerrarnegro.png" />
+                </Button>
+            </WrapPanel>
+            <!--#ENDREGION BOTONES CERRAR Y MINIMIZAR-->
+            <Grid Grid.Row="1"
+                  Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".3*" />
+                    <RowDefinition Height=".7*" />
+                </Grid.RowDefinitions>
+                <Border Background="White"
+                        Margin="10"
+                        CornerRadius="5"
+                        Grid.RowSpan="2"
+                        BorderThickness="1"
+                        BorderBrush="Black" />
+                <Border Background="White"
+                        Margin="10"
+                        Grid.RowSpan="2"
+                        CornerRadius="5"
+                        BorderThickness="1"
+                        BorderBrush="Black"
+                        Grid.Column="1" />
+                <!--#REGION RESORTE-->
+                <StackPanel Grid.ColumnSpan="2"
+                            Grid.RowSpan="2"
+                            Margin="10,30,10,0"
+                            HorizontalAlignment="Center">
+                    <StackPanel.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="BorderBrush"
+                                    Value="Black" />
+                            <Setter Property="BorderThickness"
+                                    Value="2" />
+                            <Setter Property="CornerRadius"
+                                    Value="10" />
+                            <Setter Property="Background"
+                                    Value="Gray" />
+                            <Setter Property="Width"
+                                    Value="80" />
+                            <Setter Property="Height"
+                                    Value="20" />
+                            <Setter Property="Margin"
+                                    Value="0,10" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <Border />
+                    <Border />
+                    <Border />
+                    <Border />
+                    <Border />
+                    <Border />
+                    <Border />
+                    <Border />
+                    <Border />
+                    <Border />
+                    <Border />
+                    <Border />
+                    <Border />
+                </StackPanel>
+                <!--#ENDREGION RESORTE-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".6*" />
+                        <RowDefinition Height=".4*" />
+                    </Grid.RowDefinitions>
+                    <!--#REGION TITULO AGENDA-->
+                    <TextBlock Style="{StaticResource Titulos}" />
+                    <!--#ENDREGION TITULO AGENDA-->
+                    <WrapPanel Grid.Row="1"
+                               Margin="30,0,0,0"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center">
+                        <!--#REGION BARRA DE BUSQUEDA-->
+                        <Border CornerRadius="10"
+                                Grid.Row="1"
+                                Width="300"
+                                VerticalAlignment="Center"
+                                Height="40"
+                                Margin="0,0,0,0"
+                                Background="White">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10" />
+                            </Border.Effect>
+                            <WrapPanel>
+                                <Image Source="/Assets/buscar.png"
+                                       Margin="5"
+                                       VerticalAlignment="Center" />
+                                <TextBox Grid.Row="1"
+                                         VerticalAlignment="Center"
+                                         Height="30"
+                                         Width="240"
+                                         Name="txtBuscar"
+                                         FontFamily="/Assets/#Poppins ExtraLight.ttf"
+                                         FontSize="20"
+                                         BorderThickness="0"
+                                         KeyUp="txtBuscar_KeyUp" />
+                            </WrapPanel>
+                        </Border>
+                        <!--#ENDREGION BARRA DE BUSQUEDA-->
+                        <!--#REGION BOTON AGREGAR-->
+                        <Button Grid.Row="1"
+                                Command="{Binding CambiarVistaCommand}"
+                                CommandParameter="Agregar"
+                                Style="{StaticResource BotonesAE}"
+                                Background="#64dd17">
+                            <Button.ToolTip>
+                                <ToolTip Background="White" BorderBrush="Black" BorderThickness="1">
+                                    <TextBlock Text="Agregar amigo"
+                                               FontFamily="/Assets/#Poppins ExtraLight.ttf"
+                                               FontSize="15"/>
+                                </ToolTip>
+                            </Button.ToolTip>
+                            <Image Source="/Assets/agregar-usuario.png"
+                                   Width="30" />
+                        </Button>
+                        <!--#ENDREGION BOTON AGREGAR-->
+                    </WrapPanel>
+                </Grid>
+                <!--#REGION LISTA-->
+                <ListBox Grid.Row="1"
+                         Margin="20,10,50,20"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         SelectedIndex="{Binding IndiceAmigo}"
+                         ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                         x:Name="lstListaAmigos"
+                         SelectedItem="{Binding Amigo}"
+                         ItemsSource="{Binding Agenda.ListaAmigos}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <local:PlantillaView />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.Resources>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Cursor" Value="Hand" />
+                        </Style>
+                    </ListBox.Resources>
+                </ListBox>
+                <!--#ENDREGION LISTA-->
+                <!--#REGION CONTENT CONTROL-->
+                <ContentControl Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                Margin="50,10,20,20">
+                    <ContentControl.Resources>
+                        <local:AgregarView x:Key="AgregarAmigo" />
+                        <local:NadaSeleccionadoView  x:Key="NadaSeleccionado" />
+                        <Style TargetType="ContentControl">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Vista}"
+                                             Value="Agregar">
+                                    <Setter Property="Content"
+                                            Value="{StaticResource AgregarAmigo}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Vista}"
+                                             Value="Editar">
+                                    <Setter Property="Content"
+                                            Value="{StaticResource AgregarAmigo}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Amigo}"
+                                             Value="{x:Null}">
+                                    <Setter Property="Content"
+                                            Value="{StaticResource NadaSeleccionado}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Vista}"
+                                             Value="Ver">
+                                    <Setter Property="Content">
+                                        <Setter.Value>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height=".15*" />
+                                                    <RowDefinition Height=".3*" />
+                                                    <RowDefinition Height=".55*" />
+                                                </Grid.RowDefinitions>
+                                                <TextBlock Grid.Column="0"
+                                                           Text="Información del contacto"
+                                                           Style="{StaticResource Titulos}" />
+                                                <Ellipse Height="120"
+                                                         Margin="0,20,0,0"
+                                                         Grid.Row="1"
+                                                         Width="120">
+                                                    <Ellipse.Fill>
+                                                        <ImageBrush ImageSource="/Assets/amigologo.png" />
+                                                    </Ellipse.Fill>
+                                                </Ellipse>
+                                                <!--#REGION BOTON EDITAR-->
+                                                <Button Style="{StaticResource BotonesAE}"
+                                                        Grid.Row="1"
+                                                        Margin="0,20,10,0"
+                                                        Background="Blue"
+                                                        HorizontalAlignment="Right"
+                                                        Height="40"
+                                                        Command="{Binding CambiarVistaCommand}"
+                                                        CommandParameter="Editar"
+                                                        VerticalAlignment="Top"
+                                                        Width="40">
+                                                    <Button.ToolTip>
+                                                        <ToolTip Background="White"
+                                                                 BorderBrush="Black"
+                                                                 BorderThickness="1">
+                                                            <TextBlock Text="Editar amigo"
+                                                                       FontFamily="/Assets/#Poppins ExtraLight.ttf"
+                                                                       FontSize="15" />
+                                                        </ToolTip>
+                                                    </Button.ToolTip>
+                                                    <Image Source="/Assets/editar.png" 
+                                                           Height="30"/>
+                                                </Button>
+                                                <!--#ENDREGION BOTON EDITAR-->
+                                                <StackPanel Grid.Row="2" Margin="0,20,0,0">
+                                                    <StackPanel.Resources>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="FontSize"
+                                                                    Value="22" />
+                                                            <Setter Property="Margin"
+                                                                    Value="20,15,0,0" />
+                                                            <Setter Property="FontFamily"
+                                                                    Value="/Assets/#Poppins ExtraLight.ttf" />
+                                                            <Setter Property="TextWrapping"
+                                                                    Value="Wrap" />
+                                                        </Style>
+                                                    </StackPanel.Resources>
+                                                    <WrapPanel>
+                                                        <TextBlock FontWeight="SemiBold" Text="Nombre:" />
+                                                        <TextBlock Text="{Binding ElementName=lstListaAmigos, Path=SelectedItem.Nombre}" />
+                                                    </WrapPanel>
+                                                    <WrapPanel>
+                                                        <TextBlock FontWeight="SemiBold" Text="Telefono:" />
+                                                        <TextBlock Text="{Binding ElementName=lstListaAmigos, Path=SelectedItem.Telefono}" />
+                                                    </WrapPanel>
+                                                    <WrapPanel>
+                                                        <TextBlock FontWeight="SemiBold" Text="Fecha de nacimiento:" />
+                                                        <TextBlock Text="{Binding ElementName=lstListaAmigos, Path=SelectedItem.FechaNacimiento, StringFormat=yyyy-MM-dd}" />
+                                                    </WrapPanel>
+                                                    <WrapPanel>
+                                                        <TextBlock FontWeight="SemiBold" Text="Correo Electronico:" />
+                                                        <TextBlock Text="{Binding ElementName=lstListaAmigos, Path=SelectedItem.CorreoElectronico}" />
+                                                    </WrapPanel>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Setter.Value>
+                                    </Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ContentControl.Resources>
+                </ContentControl>
+                <!--#ENDREGION CONTENT CONTROL-->
+            </Grid>
+            <!--#REGION CONFIRMAR ELIMINAR-->
+            <Grid Background="Transparent"
+                  Grid.RowSpan="3"
+                  Grid.ColumnSpan="2"
+                  x:Name="ConfirmarEliminar">
+                <Grid.Resources>
+                    <Style TargetType="Grid">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Mostrar}"
+                                         Value="No">
+                                <Setter Property="Visibility"
+                                        Value="Hidden" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Mostrar}"
+                                         Value="Si">
+                                <Setter Property="Visibility"
+                                        Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Resources>
+                
+                <Border Background="Black"
+                        Opacity=".3" />
+                <Grid HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
+                    <Border Background="White"
+                            Width="500"
+                            Height="240"
+                            BorderThickness="5"
+                            CornerRadius="10" >
+                        <Border.BorderBrush>
+                            <LinearGradientBrush>
+                                <GradientStop Color="{StaticResource Color1}"
+                                              Offset="0" />
+                                <GradientStop Color="{StaticResource Color2}"
+                                              Offset="0.5" />
+                                <GradientStop Color="{StaticResource Color3}"
+                                              Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        
+                    </Border>
+                    <DockPanel HorizontalAlignment="Center"
+                               Margin="0,20,0,0">
+                        <TextBlock Text="Desea eliminar este amigo:"
+                                   FontSize="40"
+                                   DockPanel.Dock="Top"
+                                   Foreground="Black"
+                                   Style="{StaticResource Titulos}" />
+                        <TextBlock Text="{Binding ElementName=lstListaAmigos, Path=SelectedItem.Nombre}"
+                                   FontSize="40"
+                                   DockPanel.Dock="Top"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="SemiBold"
+                                   Foreground="Black"
+                                   FontFamily="/Assets/#Poppins ExtraLight.ttf" />
+                        <WrapPanel Margin="0,10,0,0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center">
+                            <WrapPanel.Resources>
+                                <Style TargetType="Button">
+                                    <Setter Property="Width"
+                                            Value="100" />
+                                    <Setter Property="Height"
+                                            Value="50" />
+                                    <Setter Property="Margin"
+                                            Value="10,0,10,0" />
+                                    <Setter Property="FontFamily"
+                                            Value="/Assets/#Poppins ExtraLight.ttf" />
+                                    <Setter Property="FontSize"
+                                            Value="30" />
+                                    <Setter Property="Foreground"
+                                            Value="White" />
+                                    <Setter Property="Cursor"
+                                            Value="Hand" />
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <LinearGradientBrush>
+                                                <GradientStop Color="#fa5788" Offset="0"/>
+                                                <GradientStop Color="#c2185b" Offset="0.65"/>
+                                                <GradientStop Color="#8c0032" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="{TemplateBinding Background}"
+                                                        CornerRadius="10">
+                                                    <ContentPresenter VerticalAlignment="Center"
+                                                                      HorizontalAlignment="Center" />
+                                                </Border>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver"
+                                                             Value="True">
+                                                        <Setter Property="Effect">
+                                                            <Setter.Value>
+                                                                <DropShadowEffect BlurRadius="20" />
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </WrapPanel.Resources>
+                            <Button Content="Si"
+                                    Name="btnSi"
+                                    Command="{Binding DeleteCommand}" />
+                            <Button Content="No"
+                                    x:Name="btnNo"
+                                    Command="{Binding MostarCommand}"
+                                    CommandParameter="No"/>
+                        </WrapPanel>
+                    </DockPanel>
+                </Grid>
+            </Grid>
+            <!--#ENDREGION CONFIRMAR ELIMINAR-->
+        </Grid>
     </Grid>
 </Window>
