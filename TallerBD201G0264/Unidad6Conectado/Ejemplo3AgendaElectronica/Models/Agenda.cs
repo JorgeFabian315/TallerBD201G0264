@@ -21,7 +21,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Models
         public ObservableCollection<Amigo> ListaAmigos { get; set; } = new ObservableCollection<Amigo>();
         public Agenda()
         {
-            conexion.ConnectionString = "server = localhost; user = root; database = agenda2; password = root";
+            conexion.ConnectionString = "server = localhost; user = root; database = agenda2; password = Transformes3105";
             Conectar();
             comandosql = new MySqlCommand("select * from amigos order by Nombre", conexion);
             lector = comandosql.ExecuteReader();
