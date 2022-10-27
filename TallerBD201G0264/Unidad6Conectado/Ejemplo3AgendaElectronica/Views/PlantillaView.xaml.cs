@@ -26,9 +26,5 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Views
             InitializeComponent();
         }
 
-        private void btnEliminar_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Desea eliminar");
-        }
     }
 }

@@ -32,6 +32,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Models
                 {
                     Id = (int)lector["Id"],
                     Nombre = (string)lector["Nombre"],
+                    NumeroControl = (string)lector["NumeroControl"],
                     CorreoElectronico = Convert.IsDBNull(lector["CorreoElectronico"]) ? "" : (string)lector["CorreoElectronico"],
                     Telefono = (string)lector["Telefono"],
                     FechaNacimiento = (DateTime)lector["FechaNacimiento"]
@@ -58,14 +59,14 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Models
             {
                 if (a.CorreoElectronico is null)
                 {
-                    comandosql = new MySqlCommand($"insert into amigos(Nombre,Telefono,FechaNacimiento) " +
-                        $"values('{a.Nombre}','{a.Telefono}','{a.FechaNacimiento.ToString("yyyy-MM-dd")}')", conexion);
+                    comandosql = new MySqlCommand($"insert into amigos(Nombre,Telefono,FechaNacimiento,NumeroControl) " +
+                        $"values('{a.Nombre}','{a.Telefono}','{a.FechaNacimiento.ToString("yyyy-MM-dd")}','{a.NumeroControl}')", conexion);
                 }
                 else
                 {
-                    comandosql = new($"insert into amigos(Nombre,Telefono,FechaNacimiento,CorreoElectronico) " +
+                    comandosql = new($"insert into amigos(Nombre,Telefono,FechaNacimiento,CorreoElectronico,NumeroControl) " +
                         $"values('{a.Nombre}','{a.Telefono}','{a.FechaNacimiento.ToString("yyyy-MM-dd")}'" +
-                        $",'{a.CorreoElectronico}')", conexion);
+                        $",'{a.CorreoElectronico}','{a.NumeroControl}')", conexion);
                 }
                 if (comandosql.ExecuteNonQuery() != 0) // me regresa el numero de filas de filas afectadas 
                 {
@@ -94,12 +95,12 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Models
         {
                 if (a.CorreoElectronico is not null)
                 {
-                    comandosql = new MySqlCommand($"update amigos set Nombre = '{a.Nombre}',CorreoElectronico = '{a.CorreoElectronico}'" +
+                    comandosql = new MySqlCommand($"update amigos set Nombre = '{a.Nombre}',NumeroControl = '{a.NumeroControl}',CorreoElectronico = '{a.CorreoElectronico}'" +
                             $", Telefono = '{a.Telefono}', FechaNacimiento ='{a.FechaNacimiento.ToString("yyyy-MM-dd")}' where Id = {a.Id};", conexion);
                 }
                 else
                 {
-                    comandosql = new MySqlCommand($"update amigos set Nombre = '{a.Nombre}'" +
+                    comandosql = new MySqlCommand($"update amigos set Nombre = '{a.Nombre}', NumeroControl = '{a.NumeroControl}'" +
                         $", Telefono = '{a.Telefono}', FechaNacimiento ='{a.FechaNacimiento.ToString("yyyy-MM-dd")}' where Id = {a.Id};", conexion);
                 }
             comandosql.ExecuteNonQuery();
@@ -125,7 +126,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Models
         public void Buscar(string buscar)
         {
             comandosql = new MySqlCommand($"select * " +
-                $"from amigos where nombre like '%{buscar}%'",conexion);
+                $"from amigos where nombre like '%{buscar}%' or numerocontrol like '%{buscar}%'",conexion);
             lector = comandosql.ExecuteReader();
             ListaAmigos = new ObservableCollection<Amigo>();
             if (lector.HasRows)
@@ -136,6 +137,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Models
                     {
                         Id = (int)lector["Id"],
                         Nombre = (string)lector["Nombre"],
+                        NumeroControl = (string)lector["NumeroControl"],
                         CorreoElectronico = Convert.IsDBNull(lector["CorreoElectronico"]) ? "" : (string)lector["CorreoElectronico"],
                         Telefono = (string)lector["Telefono"],
                         FechaNacimiento = (DateTime)lector["FechaNacimiento"]

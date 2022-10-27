@@ -11,6 +11,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Models
     {
         public int Id { get; set; }
         public string Nombre { get; set; } = "";
+        public string NumeroControl { get; set; } = "";
         public DateTime FechaNacimiento { get; set; } = DateTime.Today;
         public string Telefono { get; set; } = "";
         public string? CorreoElectronico { get; set; }

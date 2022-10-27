@@ -24,6 +24,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Views
         public PrincipalView()
         {
             InitializeComponent();
+            btnPortadaVisible.Visibility = Visibility.Hidden;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -56,6 +57,27 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Views
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
             AEVM.BuscarCommand.Execute(txtBuscar.Text);
+
+        }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            AEVM.CambiarVistaCommand.Execute("Materias");
+        }
+
+        private void btnIniciar_Click(object sender, RoutedEventArgs e)
+        {
+            Portada1.Visibility = Visibility.Hidden;
+            Portada2.Visibility = Visibility.Hidden;
+            btnPortadaVisible.Visibility = Visibility.Visible;
+        }
+
+        private void btnPortadaVisible_Click(object sender, RoutedEventArgs e)
+        {
+            Portada1.Visibility = Visibility.Visible;
+            Portada2.Visibility = Visibility.Visible;
+            btnPortadaVisible.Visibility = Visibility.Hidden;
+
 
         }
     }

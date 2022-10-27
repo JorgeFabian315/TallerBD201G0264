@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using Google.Protobuf.WellKnownTypes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +17,19 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         public Agenda Agenda { get; set; }
-        public Amigo? Amigo { get; set; }
+        private Amigo? amigo;
+
+        public Amigo? Amigo
+        {
+            get { return amigo; }
+            set
+            {
+                amigo = value;
+                Evento("Amigo");
+            }
+        }
+
+        //public Amigo? Amigo { get; set; }
         public string Vista { get; set; } = "Ver";
         public string Error { get; set; } = "";
         public int IndiceAmigo { get; set; } = 0;
@@ -30,6 +43,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
         public ICommand CancelarCommand { get; set; }
         public AgendaElectronicaVM()
         {
+
             Agenda = new Agenda();
             CreateCommand = new RelayCommand(Create);
             DeleteCommand = new RelayCommand(Delete);
@@ -49,7 +63,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
         private void Buscar(string buscar)
         {
             Agenda.Buscar(buscar);
-            indice = 0;
+            IndiceAmigo = 0;
             Evento();
         }
 
@@ -57,27 +71,28 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
         {
             if (Amigo != null)
             {
-                Agenda.Update(Amigo);
-                Agenda.ListaAmigos[indice] = Amigo;
-                IndiceAmigo = indice;
-                CambiarVista("Ver");
-                Evento();
+                if (getValidar(Amigo))
+                {
+                    Agenda.Update(Amigo);
+                    Agenda.ListaAmigos[indice] = Amigo;
+                    IndiceAmigo = indice;
+                    CambiarVista("Ver");
+                }
             }
         }
-
         private void Delete()
         {
             if (Amigo != null)
             {
                 Agenda.Delete(Amigo);
-                CambiarVista("Ver");
                 Mostrar = "No";
-                Evento();
+                CambiarVista("Ver");
             }
         }
 
         private void Cancelar()
         {
+            Error = "";
             CambiarVista("Ver");
             Amigo = null;
         }
@@ -86,9 +101,12 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
         {
             if (Amigo != null)
             {
-                Agenda.Create(Amigo);
-                CambiarVista("Ver");
-                Evento();
+                if (getValidar(Amigo))
+                {
+                    Agenda.Create(Amigo);
+                    CambiarVista("Ver");
+                    Evento();
+                }
             }
 
         }
@@ -107,6 +125,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
                     var clon = new Amigo()
                     {
                         Id = Amigo.Id,
+                        NumeroControl = Amigo.NumeroControl,
                         CorreoElectronico = Amigo.CorreoElectronico,
                         Nombre = Amigo.Nombre,
                         Telefono = Amigo.Telefono,
@@ -120,6 +139,72 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
             }
             Evento();
         }
+
+
+        public bool getValidar(Amigo a)
+        {
+            if (a != null)
+            {
+                Error = "";
+                if (string.IsNullOrWhiteSpace(a.NumeroControl))
+                {
+                    Error = "Escriba el número de control por favor";
+                }
+                else if (a.NumeroControl.Length != 8)
+                {
+                    Error = "El número de control debe de llevar 8 caracteres";
+                }
+                else if (Agenda.ListaAmigos.Any(x => x.NumeroControl == a.NumeroControl && x.Id != a.Id))
+                {
+                    Error = "El número de control ya existe";
+                }
+                else if (string.IsNullOrWhiteSpace(a.Nombre))
+                {
+                    Error = "Escriba el nombre por favor";
+                }
+                else if (a.Nombre.Length > 100)
+                {
+                    Error = "Ha excedido el tamaño del nombre permitido";
+                }
+                else if (string.IsNullOrWhiteSpace(a.Telefono))
+                {
+                    Error = "Escriba el número de teléfono por favor";
+                }
+                else if (a.Telefono.Length != 10)
+                {
+                    Error = "El número de teléfono debe de ser de 10 dígitos";
+                }
+                else if (Agenda.ListaAmigos.Any(x => x.Telefono == a.Telefono && x.Id != a.Id))
+                {
+                    Error = "El número de teléfono ya existe";
+                }
+                else if (a.FechaNacimiento == DateTime.Today)
+                {
+                    Error = "La fecha de nacimiento no puede ser la de hoy";
+                }
+                else if (a.FechaNacimiento > DateTime.Now)
+                {
+                    Error = "La fecha de nacimiento no puede ser superior a la de hoy";
+                }
+                else if (a.CorreoElectronico != null)
+                {
+                    if (a.CorreoElectronico.Length > 100)
+                        Error = "Ha excedido el tamaño del correo electrónico";
+                }
+                if (Error == "")
+                {
+                    return true;
+                }
+                else
+                {
+                    Evento("Error");
+                    return false;
+                }
+            }
+            else
+                return false;
+        }
+
         public void Evento(string? propiedad = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propiedad));

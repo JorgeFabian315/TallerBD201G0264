@@ -17,18 +17,24 @@
     <None Remove="Assets\agregarusuario.png" />
     <None Remove="Assets\Alkalami-Regular.ttf" />
     <None Remove="Assets\amigologo.png" />
+    <None Remove="Assets\atras.png" />
     <None Remove="Assets\basura.png" />
+    <None Remove="Assets\biodegradable.png" />
     <None Remove="Assets\buscar.png" />
     <None Remove="Assets\cerrar.png" />
     <None Remove="Assets\cerrarnegro.png" />
+    <None Remove="Assets\codigobarras.png" />
     <None Remove="Assets\Dancing.ttf" />
     <None Remove="Assets\editar.png" />
     <None Remove="Assets\eliminar.png" />
+    <None Remove="Assets\logo.png" />
     <None Remove="Assets\minimizar.png" />
     <None Remove="Assets\minimizarnegro.png" />
     <None Remove="Assets\Poppins-ExtraLight.ttf" />
+    <None Remove="Assets\Portada.jpg" />
     <None Remove="Assets\regresar.png" />
     <None Remove="Assets\Roboto-Regular.ttf" />
+    <None Remove="Assets\vegeta.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,19 +55,33 @@
     <Resource Include="Assets\agregarusuario.png" />
     <Resource Include="Assets\Alkalami-Regular.ttf" />
     <Resource Include="Assets\amigologo.png" />
+    <Resource Include="Assets\atras.png" />
     <Resource Include="Assets\basura.png" />
+    <Resource Include="Assets\biodegradable.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\buscar.png" />
     <Resource Include="Assets\cerrar.png" />
     <Resource Include="Assets\cerrarnegro.png" />
+    <Resource Include="Assets\codigobarras.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Dancing.ttf" />
     <Resource Include="Assets\editar.png" />
     <Resource Include="Assets\eliminar.png" />
+    <Resource Include="Assets\logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\minimizar.png" />
     <Resource Include="Assets\.png" />
     <Resource Include="Assets\minimizarnegro.png" />
     <Resource Include="Assets\Poppins-ExtraLight.ttf" />
+    <Resource Include="Assets\Portada.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\regresar.png" />
     <Resource Include="Assets\Roboto-Regular.ttf" />
+    <Resource Include="Assets\vegeta.jpg" />
   </ItemGroup>
 
 </Project>

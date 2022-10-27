@@ -4,9 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Views"
-            xmlns:VM ="clr-namespace:TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel"
+             xmlns:Helpers="clr-namespace:TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Helpers"
+             xmlns:VM ="clr-namespace:TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Helpers:ConvertidorNumControl x:Key="Convertidor"/>
+    </UserControl.Resources>
     
     <Grid Background="Transparent" Margin="5" Width="465" x:Name="gridpadre">
         <Grid.Resources>
@@ -16,7 +20,7 @@
             </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width=".3*"/>
+            <ColumnDefinition Width=".2*"/>
             <ColumnDefinition Width=".6*"/>
             <ColumnDefinition Width=".3*"/>
         </Grid.ColumnDefinitions>
@@ -29,15 +33,22 @@
                  VerticalAlignment="Center"
                  Height="70">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="/Assets/amigologo.png" />
+                <ImageBrush ImageSource="{Binding NumeroControl,Converter={StaticResource Convertidor}}" />
             </Ellipse.Fill>
         </Ellipse>
         <TextBlock Text="{Binding Nombre}" FontWeight="SemiBold" Grid.Column="1"
-                   FontSize="20"
+                   FontSize="25"
                    Margin="15,0,0,0"/>
-        <TextBlock Text="{Binding Telefono}"
+        <TextBlock Text="{Binding NumeroControl}"
                    Grid.Column="1" Grid.Row="1" 
                    Margin="20,0,0,0" FontSize="20"/>
+        <Border Style="{StaticResource BorderAmigo}" Background="{StaticResource BordeAmigoBack}">
+            <TextBlock Text="Amigo" VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="White"
+                       FontSize="17"
+                       FontWeight="SemiBold"/>
+        </Border>
         <Button DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type Grid},AncestorLevel=4},
             Path=DataContext}"
                 Grid.Column="2"
