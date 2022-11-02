@@ -25,7 +25,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
             set
             {
                 amigo = value;
-                Evento("Amigo");
+                OnPropertyChanged("Amigo");
             }
         }
 
@@ -33,7 +33,9 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
         public string Vista { get; set; } = "Ver";
         public string Error { get; set; } = "";
         public int IndiceAmigo { get; set; } = 0;
+        public long TotalAmigos { get; set; } 
         public string Mostrar { get; set; } = "No";
+        public bool BloquearAgregar { get; set; } = false;
         public ICommand CreateCommand { get; set; }
         public ICommand MostarCommand { get; set; }
         public ICommand UpdateCommand { get; set; }
@@ -45,6 +47,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
         {
 
             Agenda = new Agenda();
+            TotalAmigos = Agenda.ListaAmigos.Count;
             CreateCommand = new RelayCommand(Create);
             DeleteCommand = new RelayCommand(Delete);
             UpdateCommand = new RelayCommand(Update);
@@ -57,14 +60,19 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
         private void MostrarMetodo(string mostrar)
         {
             Mostrar = mostrar;
-            Evento();
+            OnPropertyChanged();
         }
 
         private void Buscar(string buscar)
         {
+
             Agenda.Buscar(buscar);
-            IndiceAmigo = 0;
-            Evento();
+            if (Agenda.ListaAmigos.Count > 0)
+                Amigo = Agenda.ListaAmigos[0];
+            else
+                Amigo = null;
+            TotalAmigos = Agenda.ListaAmigos.Count;
+            OnPropertyChanged();
         }
 
         private void Update()
@@ -86,6 +94,8 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
             {
                 Agenda.Delete(Amigo);
                 Mostrar = "No";
+                TotalAmigos = Agenda.ListaAmigos.Count;
+
                 CambiarVista("Ver");
             }
         }
@@ -93,6 +103,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
         private void Cancelar()
         {
             Error = "";
+            BloquearAgregar = false;
             CambiarVista("Ver");
             Amigo = null;
         }
@@ -104,8 +115,10 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
                 if (getValidar(Amigo))
                 {
                     Agenda.Create(Amigo);
+                    TotalAmigos = Agenda.ListaAmigos.Count;
+                    BloquearAgregar = false;
                     CambiarVista("Ver");
-                    Evento();
+                    OnPropertyChanged();
                 }
             }
 
@@ -117,6 +130,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
             if (Vista == "Agregar")
             {
                 Amigo = new Amigo();
+                BloquearAgregar = true;
             }
             if (Vista == "Editar")
             {
@@ -137,7 +151,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
                 else
                     Amigo = Agenda.ListaAmigos[indice];
             }
-            Evento();
+            OnPropertyChanged();
         }
 
 
@@ -197,7 +211,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
                 }
                 else
                 {
-                    Evento("Error");
+                    OnPropertyChanged("Error");
                     return false;
                 }
             }
@@ -205,7 +219,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
                 return false;
         }
 
-        public void Evento(string? propiedad = null)
+        public void OnPropertyChanged(string? propiedad = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propiedad));
         }

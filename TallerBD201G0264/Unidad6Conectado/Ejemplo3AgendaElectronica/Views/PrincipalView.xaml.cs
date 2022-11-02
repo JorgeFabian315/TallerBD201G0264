@@ -56,15 +56,16 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Views
         }
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
+            if (!string.IsNullOrEmpty(txtBuscar.Text) && txtBuscar.Text.Length > 0)
+            {
+                textBuscar.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                textBuscar.Visibility = Visibility.Visible;
+            }
             AEVM.BuscarCommand.Execute(txtBuscar.Text);
-
         }
-
-        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            AEVM.CambiarVistaCommand.Execute("Materias");
-        }
-
         private void btnIniciar_Click(object sender, RoutedEventArgs e)
         {
             Portada1.Visibility = Visibility.Hidden;
@@ -79,6 +80,16 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Views
             btnPortadaVisible.Visibility = Visibility.Hidden;
 
 
+        }
+
+        //private void txtBuscar_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    AEVM.BuscarCommand.Execute(txtBuscar.Text);
+        //}
+
+        private void textBuscar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            txtBuscar.Focus();
         }
     }
 }

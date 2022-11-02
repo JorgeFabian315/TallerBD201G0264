@@ -25,14 +25,181 @@
                                           HorizontalAlignment="Center" />
                     </Border>
                     <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation   Storyboard.TargetProperty="Width"
+                                                                   To="45"
+                                                                   Duration="0:0:0.2"
+                                                                   BeginTime="0:0:0" />
+                                                <DoubleAnimation   Storyboard.TargetProperty="Height"
+                                                                   To="45"
+                                                                   Duration="0:0:0.2"
+                                                                   BeginTime="0:0:0" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation   Storyboard.TargetProperty="Width"
+                                                                   To="40"
+                                                                   Duration="0:0:0.2"
+                                                                   BeginTime="0:0:0" />
+                                                <DoubleAnimation   Storyboard.TargetProperty="Height"
+                                                                   To="40"
+                                                                   Duration="0:0:0.2"
+                                                                   BeginTime="0:0:0" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button"
+           x:Key="BotonAgregar">
+        <Setter Property="Height"
+                Value="40" />
+        <Setter Property="Width"
+                Value="40" />
+        <Setter Property="Margin"
+                Value="40,0,10,0" />
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            Width="{TemplateBinding Width}"
+                            CornerRadius="10"
+                            Height="{TemplateBinding Height}"
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding BloquearAgregar}" Value="true">
+                            <Setter Property="IsEnabled"
+                                    Value="false" />
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver"
+                                 Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation   Storyboard.TargetProperty="Width"
+                                                           To="45"
+                                                           Duration="0:0:0.2"
+                                                           BeginTime="0:0:0" />
+                                        <DoubleAnimation   Storyboard.TargetProperty="Height"
+                                                           To="45"
+                                                           Duration="0:0:0.2"
+                                                           BeginTime="0:0:0" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation   Storyboard.TargetProperty="Width"
+                                                           To="40"
+                                                           Duration="0:0:0.2"
+                                                           BeginTime="0:0:0" />
+                                        <DoubleAnimation   Storyboard.TargetProperty="Height"
+                                                           To="40"
+                                                           Duration="0:0:0.2"
+                                                           BeginTime="0:0:0" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button"
+           x:Key="BotoneRegresar">
+        <Setter Property="Margin"
+                Value="40,0,10,0" />
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            Width="{TemplateBinding Width}"
+                            CornerRadius="10"
+                            Height="{TemplateBinding Height}"
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver"
                                  Value="True">
                             <Setter Property="Effect">
                                 <Setter.Value>
-                                    <DropShadowEffect BlurRadius="15" />
+                                    <DropShadowEffect BlurRadius="10"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button"
+           x:Key="BotonInicio">
+        <Setter Property="Height"
+                Value="75" />
+        <Setter Property="Width"
+                Value="150" />
+        <Setter Property="Margin"
+                Value="40,0,10,0" />
+        <Setter Property="Background"
+                Value="#161429" />
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            Width="{TemplateBinding Width}"
+                            CornerRadius="10"
+                            Name="border"
+                            Height="{TemplateBinding Height}"
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetProperty="Background.Color"
+                                                    To="{StaticResource Color3}" BeginTime="0:0:0"
+                                                    Duration="0:0:0.3"
+                                                    Storyboard.TargetName="border"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation To="#161429"
+                                                    BeginTime="0:0:0"
+                                                    Duration="0:0:0.3"
+                                                    Storyboard.TargetProperty="Background.Color"
+                                                    Storyboard.TargetName="border" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -191,4 +358,139 @@
         <GradientStop Color="#ab47bc" Offset="0.55"/>
         <GradientStop Color="#7c4dff" Offset="0.95"/>
     </LinearGradientBrush>
+    
+    <Style TargetType="Button" x:Key="BotonAgregarAmigo">
+        <Setter Property="FontSize"
+                Value="30" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="FontFamily"
+                Value="/Assets/#Dancing Script" />
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="Width"
+                Value="130" />
+        <Setter Property="Height"
+                Value="50" />
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Margin"
+                Value="10,0,10,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="10"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="Agregar">
+                            <Setter Property="Content"
+                                    Value="Agregar" />
+                            <Setter Property="Command"
+                                    Value="{Binding CreateCommand}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Vista}"
+                                     Value="Editar">
+                            <Setter Property="Content"
+                                    Value="Guardar" />
+                            <Setter Property="Command"
+                                    Value="{Binding UpdateCommand}" />
+                        </DataTrigger>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Width" To="135"
+                                                     BeginTime="0:0:0" Duration="0:0:0.3"/>
+                                    <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                     To="55"
+                                                     BeginTime="0:0:0"
+                                                     Duration="0:0:0.3" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                     To="130"
+                                                     BeginTime="0:0:0"
+                                                     Duration="0:0:0.3" />
+                                    <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                     To="50"
+                                                     BeginTime="0:0:0"
+                                                     Duration="0:0:0.3" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="BotonCancelarAmigo">
+        <Setter Property="FontSize"
+                Value="30" />
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="FontFamily"
+                Value="/Assets/#Dancing Script" />
+        <Setter Property="Foreground"
+                Value="White" />
+        <Setter Property="Width"
+                Value="130" />
+        <Setter Property="Height"
+                Value="50" />
+        <Setter Property="Cursor"
+                Value="Hand" />
+        <Setter Property="Margin"
+                Value="10,0,10,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="10"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                     To="135"
+                                                     BeginTime="0:0:0"
+                                                     Duration="0:0:0.3" />
+                                    <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                     To="55"
+                                                     BeginTime="0:0:0"
+                                                     Duration="0:0:0.3" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="Width"
+                                                     To="130"
+                                                     BeginTime="0:0:0"
+                                                     Duration="0:0:0.3" />
+                                    <DoubleAnimation Storyboard.TargetProperty="Height"
+                                                     To="50"
+                                                     BeginTime="0:0:0"
+                                                     Duration="0:0:0.3" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

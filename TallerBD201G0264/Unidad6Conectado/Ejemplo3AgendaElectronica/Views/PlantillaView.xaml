@@ -33,9 +33,18 @@
                  VerticalAlignment="Center"
                  Height="70">
             <Ellipse.Fill>
+                <ImageBrush ImageSource="/Assets/amigologo.png" />
+            </Ellipse.Fill>
+        </Ellipse>
+        <Ellipse Width="70"
+                 Grid.RowSpan="2"
+                 VerticalAlignment="Center"
+                 Height="70">
+            <Ellipse.Fill>
                 <ImageBrush ImageSource="{Binding NumeroControl,Converter={StaticResource Convertidor}}" />
             </Ellipse.Fill>
         </Ellipse>
+      
         <TextBlock Text="{Binding Nombre}" FontWeight="SemiBold" Grid.Column="1"
                    FontSize="25"
                    Margin="15,0,0,0"/>

@@ -53,6 +53,13 @@
                  Grid.Row="1"
                  Width="120">
             <Ellipse.Fill>
+                <ImageBrush ImageSource="/Assets/amigologo.png" />
+            </Ellipse.Fill>
+        </Ellipse>
+        <Ellipse Height="120"
+                 Grid.Row="1"
+                 Width="120">
+            <Ellipse.Fill>
                 <ImageBrush ImageSource="{Binding Amigo.NumeroControl,Converter={StaticResource conver}}" />
             </Ellipse.Fill>
         </Ellipse>
@@ -131,113 +138,12 @@
                        FontWeight="SemiBold"/>
             <WrapPanel HorizontalAlignment="Center"
                        VerticalAlignment="Center">
-                <WrapPanel.Resources>
-                    <!--#REGION ESTILOS BOTONES-->
-                    <Style TargetType="Button">
-                        <Setter Property="FontSize"
-                                Value="30" />
-                        <Setter Property="BorderThickness"
-                                Value="0" />
-                        <Setter Property="FontFamily"
-                                Value="/Assets/#Dancing Script" />
-                        <Setter Property="Foreground"
-                                Value="White" />
-                        <Setter Property="Width"
-                                Value="130" />
-                        <Setter Property="Height"
-                                Value="50" />
-                        <Setter Property="Cursor"
-                                Value="Hand" />
-                        <Setter Property="Margin"
-                                Value="10,0,10,0" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border CornerRadius="10"
-                                            Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}">
-                                        <ContentPresenter VerticalAlignment="Center"
-                                                          HorizontalAlignment="Center" />
-                                    </Border>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver"
-                                                 Value="True">
-                                            <Setter Property="Effect">
-                                                <Setter.Value>
-                                                    <DropShadowEffect  BlurRadius="20" />
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                    <!--#ENDREGION ESTILOS BOTONES-->
-                </WrapPanel.Resources>
-                <Button Background="#32cb00">
-                    <Button.Resources>
-                        <Style TargetType="Button">
-                            <Setter Property="FontSize"
-                                    Value="30" />
-                            <Setter Property="BorderThickness"
-                                    Value="0" />
-                            <Setter Property="FontFamily"
-                                    Value="/Assets/#Dancing Script" />
-                            <Setter Property="Foreground"
-                                    Value="White" />
-                            <Setter Property="Width"
-                                    Value="130" />
-                            <Setter Property="Height"
-                                    Value="50" />
-                            <Setter Property="Cursor"
-                                    Value="Hand" />
-                            <Setter Property="Margin"
-                                    Value="10,0,10,0" />
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="Button">
-                                        <Border CornerRadius="10"
-                                                Background="{TemplateBinding Background}"
-                                                BorderBrush="{TemplateBinding BorderBrush}"
-                                                BorderThickness="{TemplateBinding BorderThickness}">
-                                            <ContentPresenter VerticalAlignment="Center"
-                                                              HorizontalAlignment="Center" />
-                                        </Border>
-                                        <ControlTemplate.Triggers>
-                                            <DataTrigger Binding="{Binding Vista}"
-                                                         Value="Agregar">
-                                                <Setter Property="Content"
-                                                        Value="Agregar" />
-                                                <Setter Property="Command"
-                                                        Value="{Binding CreateCommand}" />
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding Vista}"
-                                                         Value="Editar">
-                                                <Setter Property="Content"
-                                                        Value="Guardar" />
-                                                <Setter Property="Command"
-                                                        Value="{Binding UpdateCommand}" />
-                                            </DataTrigger>
-                                            <Trigger Property="IsMouseOver"
-                                                     Value="True">
-                                                <Setter Property="Effect">
-                                                    <Setter.Value>
-                                                        <DropShadowEffect  BlurRadius="20" />
-                                                    </Setter.Value>
-                                                </Setter>
-                                            </Trigger>
-                                        </ControlTemplate.Triggers>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </Button.Resources>
+                <Button Background="#32cb00" Style="{StaticResource BotonAgregarAmigo}">
                 </Button>
                 <Button Content="Cancelar"
                         Command="{Binding CancelarCommand}"
-                        Background="Red" />
+                        Background="Red"
+                        Style="{StaticResource BotonCancelarAmigo}"/>
             </WrapPanel>
         </StackPanel>
     </Grid>
