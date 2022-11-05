@@ -20,8 +20,11 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.Helpers
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var nc = (string)value;
-            string? url = nc == "" ? "" : $"https://intertec.tec-carbonifera.edu.mx/fotos/al/{nc.Substring(0, 2)}/{nc}.jpg";
-            if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) || nc.Length != 8)
+            string? url = "";
+            if (nc.Length == 8) {
+                url = nc == "" ? "" : $"https://intertec.tec-carbonifera.edu.mx/fotos/al/{nc.Substring(0, 2)}/{nc}.jpg"; 
+            }
+            if (!Uri.TryCreate(url, UriKind.Absolute, out var uri))
             {
                 return "/Assets/amigologo.png";
             }

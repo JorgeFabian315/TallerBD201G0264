@@ -81,6 +81,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
             {
                 if (getValidar(Amigo))
                 {
+                    BloquearAgregar = false;
                     Agenda.Update(Amigo);
                     Agenda.ListaAmigos[indice] = Amigo;
                     IndiceAmigo = indice;
@@ -134,6 +135,7 @@ namespace TallerBD201G0264.Unidad6Conectado.Ejemplo3AgendaElectronica.ViewModel
             }
             if (Vista == "Editar")
             {
+                BloquearAgregar = true;
                 if (Amigo != null)
                 {
                     var clon = new Amigo()

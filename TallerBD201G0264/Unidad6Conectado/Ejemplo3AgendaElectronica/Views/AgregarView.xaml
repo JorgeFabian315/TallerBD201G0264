@@ -77,7 +77,7 @@
                 </Style>
                 <Style TargetType="TextBox">
                     <Setter Property="Width"
-                            Value="200" />
+                            Value="240" />
                     <Setter Property="FontSize"
                             Value="17" />
                     <Setter Property="Margin"
@@ -99,7 +99,7 @@
                 </Style>
             </StackPanel.Resources>
             <WrapPanel>
-                <TextBlock Text="Numero de control:" />
+                <TextBlock Text="Número de control:" />
                 <TextBox MaxLength="8"
                          Text="{Binding Amigo.NumeroControl}"
                          CharacterCasing="Upper" />
@@ -109,7 +109,7 @@
                 <TextBox Text="{Binding Amigo.Nombre}" />
             </WrapPanel>
             <WrapPanel>
-                <TextBlock Text="Telefono:" />
+                <TextBlock Text="Teléfono:" />
                 <TextBox Name="txtTelefono"
                          KeyDown="txtTelefono_KeyDown"
                          MaxLength="10"
@@ -130,7 +130,7 @@
                        Foreground="Red"
                        HorizontalAlignment="Center"
                        FontFamily="#Poppins ExtraLight.ttf"
-                       FontSize="18"
+                       FontSize="16"
                        TextAlignment="Center"
                        TextWrapping="Wrap"
                        Margin="0,0,0,8"

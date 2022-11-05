@@ -33,7 +33,7 @@
                  VerticalAlignment="Center"
                  Height="70">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="/Assets/amigologo.png" />
+                <ImageBrush ImageSource="C:\Users\Fabian\Desktop\TallerBD201G0264\TallerBD201G0264\Assets\amigologo.png" />
             </Ellipse.Fill>
         </Ellipse>
         <Ellipse Width="70"

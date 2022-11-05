@@ -183,7 +183,7 @@
                             <BeginStoryboard>
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetProperty="Background.Color"
-                                                    To="{StaticResource Color3}" BeginTime="0:0:0"
+                                                    To="#ba2d65" BeginTime="0:0:0"
                                                     Duration="0:0:0.3"
                                                     Storyboard.TargetName="border"/>
                                 </Storyboard>
@@ -350,7 +350,7 @@
         <Setter Property="BorderThickness"
                 Value="0" />
         <Setter Property="Margin"
-                Value="80,0,0,10" />
+                Value="80,0,0,0" />
     </Style>
     <LinearGradientBrush x:Key="BordeAmigoBack">
         <GradientStop Color="White" Offset="0"/>

@@ -46,13 +46,13 @@
                     CornerRadius="70,70,10,10"
                     Grid.RowSpan="2"
                     Margin="0,90,0,0" />-->
-            <Ellipse Height="150"
+            <Ellipse Height="130"
                      Margin="35,25,0,0"
                      Grid.Row="1"
                      VerticalAlignment="Top"
                      Grid.RowSpan="2"
                      HorizontalAlignment="Center"
-                     Width="150">
+                     Width="130">
                 <Ellipse.Effect>
                     <DropShadowEffect BlurRadius="25"
                                       Direction="270" />
@@ -62,13 +62,13 @@
                                 ImageSource="/Assets/amigologo.png" />
                 </Ellipse.Fill>
             </Ellipse>
-            <Ellipse Height="150"
+            <Ellipse Height="130"
                      Margin="35,25,0,0"
                      Grid.Row="1"
                      VerticalAlignment="Top"
                      Grid.RowSpan="2"
                      HorizontalAlignment="Center"
-                     Width="150">
+                     Width="130">
                 <Ellipse.Effect>
                     <DropShadowEffect BlurRadius="25"
                                       Direction="270" />
@@ -104,11 +104,11 @@
             <!--#ENDREGION BOTON EDITAR-->
             <StackPanel Grid.Row="2"
                         HorizontalAlignment="Center"
-                        Margin="0,20,0,0">
+                        Margin="0,0,0,0">
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
                         <Setter Property="FontSize"
-                                Value="22" />
+                                Value="19" />
                         <Setter Property="Foreground"
                                 Value="Black" />
                         <Setter Property="Margin"
@@ -121,7 +121,7 @@
                 </StackPanel.Resources>
                 <WrapPanel>
                     <TextBlock FontWeight="SemiBold"
-                               Text="Numero de cotrol:" />
+                               Text="Número de cotrol:" />
                     <TextBlock Text="{Binding Amigo.NumeroControl}" />
                 </WrapPanel>
                 <WrapPanel>
@@ -131,7 +131,7 @@
                 </WrapPanel>
                 <WrapPanel>
                     <TextBlock FontWeight="SemiBold"
-                               Text="Telefono:" />
+                               Text="Teléfono:" />
                     <TextBlock Text="{Binding Amigo.Telefono}" />
                 </WrapPanel>
                 <WrapPanel>
@@ -141,7 +141,7 @@
                 </WrapPanel>
                 <WrapPanel>
                     <TextBlock FontWeight="SemiBold"
-                               Text="Correo Electronico:" />
+                               Text="Correo electrónico:" />
                     <TextBlock Text="{Binding Amigo.CorreoElectronico}" />
                 </WrapPanel>
             </StackPanel>
